@@ -1,0 +1,52 @@
+.background{
+    background-image: url("../../assets/images/11.jpg");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 1000px;
+    background-size: cover;
+    text-align: center;
+    background-position: center;
+}
+h3{
+    color: wheat;
+    margin: 20px 0;
+}
+h6{
+    color: wheat;
+}
+button{
+    margin: 20px 0;
+    padding: 7px 20px;
+    border-radius: 5px;
+    background-color: rgb(250, 195, 112);
+    color: black;
+    border: 0px;
+}
+button:hover{
+    color: #feac00;
+    background: none;
+    border: 1px solid;
+    border-color: #feac00;
+}
+a{
+    font-size: large;
+    text-decoration: none;
+    padding: 10px 30px;
+    color: wheat;
+}
+a:hover{
+    border-radius: 10px;
+    color: #feac00;
+}
+.index{
+    padding-top:15%; 
+}
+.navbar-brand{
+    font-size: xx-large;
+    color: #feac00;
+}
+.navbar{
+    position: fixed;
+    width: 100%;
+}
+

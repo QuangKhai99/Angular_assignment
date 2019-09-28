@@ -1,0 +1,46 @@
+a{
+    font-size: large;
+    text-decoration: none;
+    padding: 10px 30px;
+    color: wheat;
+}
+a:hover{
+    border-radius: 10px;
+    color: #feac00;
+}
+.navbar{
+    position: fixed;
+    width: 100%;
+    background-color: rgb(41, 33, 33); 
+}
+.navbar-brand{
+    font-size: xx-large;
+    color: #feac00;
+}
+.question{
+    padding-top: 130px;
+    padding-bottom:50px;
+    background-color: rgb(248, 240, 226);
+    height: 100%;
+    width: 100%;
+    padding-right: 15px;
+}
+.content h3 {
+    text-align: center;
+    margin-bottom:30px; 
+}
+.content a{
+    color: chocolate;
+}
+.content a:hover{
+    color:rgb(139, 92, 5);
+}
+.content .card{
+    border-radius: 5px;
+}
+.content .card-body{
+    padding-left: 50px;
+}
+.content span a{
+    padding: 0px;
+}

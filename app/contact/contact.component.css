@@ -1,0 +1,77 @@
+a{
+    font-size: large;
+    text-decoration: none;
+    padding: 10px 30px;
+    color: wheat;
+}
+a:hover{
+    border-radius: 10px;
+    color: chocolate;
+}
+.navbar{
+    position: fixed;
+    width: 100%;
+    background-color:  rgb(41, 33, 33);
+}
+.navbar-brand{
+    font-size: xx-large;
+    color: chocolate;
+}
+.contact{
+    padding-top: 130px;
+    padding-bottom:50px;
+    background-color: rgb(248, 240, 226);
+    height: 100%;
+    width: 100%;
+    padding-right: 15px;
+}
+.span-color{
+    color: #feac00;
+}
+label{
+    color: #555;
+    font-size: 0.9em;
+    margin-bottom: .5rem;
+}
+.form-group{
+    display: block;
+}
+form input, form textarea{
+    border: 1px solid #ddd;
+    width: 100%;
+    padding: 13px 15px;
+    border-radius: 5px;
+}
+form textarea{
+    min-height: 250px;
+}
+.btn-submit{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 10px;
+}
+.btn-submit button{
+    color: black;
+    padding: 11.2px 48px;
+    background: #feac00;
+    border:none;
+    border-radius: 5px;
+}
+.btn-submit button:hover{
+    background: black;
+    color: #feac00;
+}
+.contact-info h5 {
+    border-left: #feac00 5px solid;
+    padding-left:20px;
+    margin-bottom: 20px;
+}
+.contact-info p{
+    font-size: large;
+}
+.contact-info p i{
+    font-size: x-large;
+    color: #feac00;
+    margin-right: 10px;
+}

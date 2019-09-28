@@ -1,0 +1,27 @@
+a{
+    font-size: large;
+    text-decoration: none;
+    padding: 10px 30px;
+    color: wheat;
+}
+a:hover{
+    border-radius: 10px;
+    color: chocolate;
+}
+.navbar{
+    position: fixed;
+    width: 100%;
+    background-color:  rgb(41, 33, 33);
+}
+.navbar-brand{
+    font-size: xx-large;
+    color: chocolate;
+}
+.testing{
+    padding-top: 130px;
+    padding-bottom:50px;
+    background-color: rgb(248, 240, 226);
+    height: auto;
+    width: auto;
+    padding-right: 15px;
+}
