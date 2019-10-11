@@ -1,7 +1,11 @@
-<nav class="navbar navbar-expand-sm">
-    <!-- Brand/logo -->
-    <a class="navbar-brand mr-auto" [routerLink]="['/index']">FUTURE</a>
-    <ul class="navbar-nav ">
+<nav class="navbar navbar-expand-sm" >
+    <!-- Brand/logo -->      
+    <a class="navbar-brand" [routerLink]="['/index']">FUTURE</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span><i class="fas fa-bars" style="color:feac00;"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav ml-auto">
         <li class="nav-item ">
             <a [routerLink]="['/listsubject']">Làm bài thi</a>
         </li>
@@ -9,12 +13,13 @@
             <a [routerLink]="['/fixinfo']">Sửa thông tin</a>
         </li>
         <li class="nav-item ">
-            <a [routerLink]="['/fixpassword']">Đổi mật khẩu</a>
+            <a [routerLink]="['/fixpassword']">Đổi mật khẩu</a>    
         </li>
         <li class="nav-item ">
-            <a [routerLink]="['/index']">Đăng xuất</a>
+                <a [routerLink]="['/index']">Đăng xuất</a>    
         </li>
     </ul>
+</div>
 </nav>
 <div class="testing">
     <div class="card">

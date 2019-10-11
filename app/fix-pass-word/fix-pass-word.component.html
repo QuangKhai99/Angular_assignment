@@ -1,7 +1,11 @@
 <nav class="navbar navbar-expand-sm" >
         <!-- Brand/logo -->      
-        <a class="navbar-brand mr-auto" [routerLink]="['/index']">FUTURE</a>     
-        <ul class="navbar-nav ">
+        <a class="navbar-brand" [routerLink]="['/index']">FUTURE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span><i class="fas fa-bars" style="color:feac00;"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item ">
                 <a [routerLink]="['/listsubject']">Làm bài thi</a>
             </li>
@@ -15,16 +19,17 @@
                     <a [routerLink]="['/index']">Đăng xuất</a>    
             </li>
         </ul>
+    </div>
     </nav>
     <div class="fixinfo">
-        <div class="row" style="text-align: center;">
-            <div class="col-7">
+        <div class="row">
+            <div class="col-lg-7 col-md-5 col-sm-12" style="text-align: center;padding: 5em 5em 3.5em;">
                 <h3 style="margin: 50px 0;">QUẢN LÝ TÀI KHOẢN FUTURE CỦA BẠN</h3>
-                <img src="assets/images/9.jpg" style="width: 60%;height: 60%;">
+                <img src="assets/images/9.jpg" style="width: 80%;height: 65%;">
             </div>
-            <div class="col-4" style="margin:50px 0; ">
-                <h3 style="margin-bottom: 50px;">Đổi mật khẩu</h3>
-                <form>
+            <div class="col-lg-4 col-md-6 col-sm-12" style="margin:50px 0; ">
+                <h3 style="text-align: center;">Đổi mật khẩu</h3>
+                <form style="margin-top: 50px;">
                         <div class="form-left">
                                 <span><i class="fas fa-lock"></i></span>
                                 <input type="password" name="password" placeholder="Password mới" >

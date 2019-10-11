@@ -39,7 +39,7 @@ a:hover{
     color: #feac00;
 }
 .index{
-    padding-top:15%; 
+    padding-top:15%;
 }
 .navbar-brand{
     font-size: xx-large;
@@ -48,5 +48,6 @@ a:hover{
 .navbar{
     position: fixed;
     width: 100%;
+    z-index: 9999;
 }
 

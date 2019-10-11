@@ -12,10 +12,25 @@ a:hover{
     position: fixed;
     width: 100%;
     background-color: rgb(41, 33, 33); 
+    z-index: 9999;
 }
 .navbar-brand{
     font-size: xx-large;
     color: #feac00;
+}
+nav button{
+    margin: 20px 0;
+    padding: 7px 20px;
+    border-radius: 5px;
+    background-color: rgb(250, 195, 112);
+    color: black;
+    border: 0px;
+}
+nav button:hover{
+    color: #feac00;
+    background: none;
+    border: 1px solid;
+    border-color: #feac00;
 }
 .question{
     padding-top: 130px;

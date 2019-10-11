@@ -12,10 +12,22 @@ a:hover{
     position: fixed;
     width: 100%;
     background-color:  rgb(41, 33, 33);
+    z-index: 9999;
 }
 .navbar-brand{
     font-size: xx-large;
     color: chocolate;
+}
+nav button{
+    padding: 5px 20px;
+    width:auto;
+    background: #feac00;
+    border: 1px solid #feac00;
+    border-radius: 5px;
+}
+nav button:hover{
+    background: none; 
+    color: #feac00;
 }
 .testing{
     padding-top: 130px;
@@ -25,23 +37,22 @@ a:hover{
     width: auto;
     padding-right: 15px;
 }
-.list{
-    padding: 0 10%;
-}
 .list .card{
-    padding:0;
-    margin: 1% 4%;
     border-radius: 5px;
     float: left;
-    width:25%;
+    margin: 20px;
 }
 .list button{
     border: none;
     border-radius: 5px;
+    padding: 5px 20px;
+    width:auto;
+    background: #feac00;
+    border: 1px solid #feac00;
 }
 .list button:hover{
     color: chocolate;
-    font-size: large;
+    background: none;
 }
 
 

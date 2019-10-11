@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
@@ -30,6 +31,7 @@ import { ListsubjectsComponent } from './listsubjects/listsubjects.component';
   imports: [
     BrowserModule,
     NgxPaginationModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: '' , component:IndexComponent},
       { path: 'index' , component:IndexComponent},

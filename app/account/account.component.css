@@ -7,11 +7,13 @@ a{
     position: fixed;
     width: 100%;
     background-color: rgb(41, 33, 33); 
+    z-index: 9999;
 }
 .navbar-brand{
     font-size: xx-large;
     color: #feac00;
-    padding-left:20%; 
+    padding: 10px 30px;
+    
 }
 .account{
     padding-top: 130px;
@@ -22,17 +24,16 @@ a{
     padding-right: 15px;
 }
 nav label{
-    color: white;
-    
+    color: white; 
 }
 nav input,button{
-    width: 100%;
-    
+    width: 100%;  
     border-radius: 5px;
     border: none;
 }
 nav button{
-    width:60%;
+    padding: 0 5%;
+    width:auto;
     background: #feac00;
     border: 1px solid #feac00;
 }
@@ -40,19 +41,19 @@ nav button:hover{
     background: none; 
     color: #feac00;
 }
+
 .form-left span{
-    padding-bottom: -10px;
     font-size: 25px;
     border: none;
     color: #cccccc;
+    width: auto;
+    border-right: 1px solid #a5a2a2;
 }
-.form-left i{
+.form-left i{ 
     display: inline-block;
     font: normal normal normal 14px/1;
-    text-rendering: auto;
-    box-sizing: border-box;
-    width:55px;
-    border-right: 1px solid #a5a2a2;
+    padding: 10px;
+    width:50px;
 }
 .form-left{
     margin: 0px 0px 36px;
@@ -67,23 +68,27 @@ nav button:hover{
     outline: none;
     background: transparent;
     font-family: 'Open Sans', sans-serif;
-    width: 88%;
+    width: 60%;
 }
 .form-left:hover{
+    border-color: greenyellow;
+}
+.form-left:hover span{
     border-color: greenyellow;
 }
 .form-left:hover i{
     border-color: greenyellow;
     color: greenyellow;
 }
-.account .col-4{
+.account .col-lg-4{
     background: #fff;
     box-shadow: 0px 0px 10px 1px #cccccc;
     border-radius:5px; 
     padding: 5em 5em 3.5em;
 }
 .account button{
-    width: 60%;
+    width: auto;
+    padding: 0 15%;
     height: 150%;
     border-radius:5px; 
 }

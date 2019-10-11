@@ -12,6 +12,7 @@ a:hover{
     position: fixed;
     width: 100%;
     background-color:  rgb(41, 33, 33);
+    z-index: 9999;
 }
 .navbar-brand{
     font-size: xx-large;
@@ -24,4 +25,14 @@ a:hover{
     height: auto;
     width: auto;
     padding-right: 15px;
+}
+nav button{
+    padding: 5px 20px;
+    width:auto;
+    background: #feac00;
+    border: 1px solid #feac00;
+}
+nav button:hover{
+    background: none; 
+    color: #feac00;
 }

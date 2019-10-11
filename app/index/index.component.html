@@ -1,26 +1,30 @@
 <div class="background">
-<nav class="navbar navbar-expand-sm">
-    <!-- Brand/logo -->
-    <a class="navbar-brand mr-auto" [routerLink]="['/index']">FUTURE</a>
-    <ul class="navbar-nav">
-        <li class="nav-item">
-                <a [routerLink]="['/intro']"><i class="fas fa-info"></i> Giới Thiệu</a>
-        </li>
-        <li class="nav-item">
-                <a [routerLink]="['/contact-us']"><i class="fas fa-phone"></i> Liên Hệ</a>
-        </li>
-        <li class="nav-item">
-                <a [routerLink]="['/q-&-a']"><i class="fas fa-question"></i> Hỏi Đáp</a>
-        </li>
-        <li class="nav-item">
-                <a [routerLink]="['/account']"><i class="fas fa-user-alt"></i> Đăng Nhập</a>
-        </li>
-      </ul>
-  </nav>
-  <div class="index">
-    <h3>Welcome To Future</h3>
-    <h6>Online test website for ITC College students</h6>
-    <button [routerLink]="['/account']"><b>GET START</b></button>
-  </div>
+        <nav class="navbar navbar-expand-sm">
+                <!-- Brand/logo -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span><i class="fas fa-bars"></i></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar" >
+                        <a class="navbar-brand" [routerLink]="['/index']">FUTURE</a>
+                        <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                        <a [routerLink]="['/intro']"><i class="fas fa-info"></i> Giới Thiệu</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a [routerLink]="['/contact-us']"><i class="fas fa-phone"></i> Liên Hệ</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a [routerLink]="['/q-&-a']"><i class="fas fa-question"></i> Hỏi Đáp</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a [routerLink]="['/account']"><i class="fas fa-user-alt"></i> Đăng Nhập</a>
+                                </li>
+                        </ul>
+                </div>
+        </nav>
+        <div class="index">
+                <h3>Welcome To Future</h3>
+                <h6>Online test website for ITC College students</h6>
+                <button [routerLink]="['/account']"><b>GET START</b></button>
+        </div>
 </div>
-

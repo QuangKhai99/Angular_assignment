@@ -1,7 +1,12 @@
    <nav class="navbar navbar-expand-sm">
         <!-- Brand/logo -->
-        <a class="navbar-brand mr-auto" [routerLink]="['/index']">FUTURE</a>
-        <ul class="navbar-nav">
+        
+        <a class="navbar-brand" [routerLink]="['/index']">FUTURE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span><i class="fas fa-bars" style="color:feac00;"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                         <a [routerLink]="['/intro']"><i class="fas fa-info"></i> Giới Thiệu</a>
                 </li>
@@ -15,6 +20,7 @@
                         <a [routerLink]="['/account']"><i class="fas fa-user-alt"></i> Đăng Nhập</a>
                 </li>
               </ul>
+            </div>
     </nav>
 <div class="intro">
     <h3>Về Future</h3>
@@ -27,28 +33,28 @@
     <div class="gallery container">
         <h3>Một số môn</h3>
         <div class="row">
-            <div class="col-md-3 col-6">
+            <div class="col-md-3 col-sm-6">
                 <img src="assets/images/ADAV.jpg" width="240px" height="163.63px">
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-3 col-sm-6">
                 <img src="assets/images/CLCO.jpg" width="240px" height="163.63px">
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-3 col-sm-6">
                 <img src="assets/images/DBAV.png" width="240px" height="163.63px">
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-3 col-sm-6">
                 <img src="assets/images/GAME.png" width="240px" height="163.63px">
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-3 col-sm-6">
                 <img src="assets/images/HTCS.jpg" width="240px" height="163.63px">
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-3 col-sm-6">
                 <img src="assets/images/INMA.jpg" width="240px" height="163.63px">
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-3 col-sm-6">
                 <img src="assets/images/JAAV.png" width="240px" height="163.63px">
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-3 col-sm-6">
                 <img src="assets/images/LAYO.jpg" width="240px" height="163.63px">
             </div>
         </div>
