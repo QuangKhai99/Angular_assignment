@@ -1,34 +1,63 @@
-<nav class="navbar navbar-expand-sm" >
-    <!-- Brand/logo -->      
+<nav class="navbar navbar-expand-sm">
+    <!-- Brand/logo -->
     <a class="navbar-brand" [routerLink]="['/index']">FUTURE</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span><i class="fas fa-bars" style="color:feac00;"></i></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item ">
-            <a [routerLink]="['/listsubject']">Làm bài thi</a>
-        </li>
-        <li class="nav-item ">
-            <a [routerLink]="['/fixinfo']">Sửa thông tin</a>
-        </li>
-        <li class="nav-item ">
-            <a [routerLink]="['/fixpassword']">Đổi mật khẩu</a>    
-        </li>
-        <li class="nav-item ">
-                <a [routerLink]="['/index']">Đăng xuất</a>    
-        </li>
-    </ul>
-</div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+                <a [routerLink]="['/listsubject']">Làm bài thi</a>
+            </li>
+            <li class="nav-item ">
+                <a [routerLink]="['/fixinfo']">Sửa thông tin</a>
+            </li>
+            <li class="nav-item ">
+                <a [routerLink]="['/fixpassword']">Đổi mật khẩu</a>
+            </li>
+            <li class="nav-item ">
+                <a [routerLink]="['/index']" (click)="logOut()">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 <div class="testing">
-    <div class="card">
-        <div class="card-header">{{subject?.Name}}</div>
-        <div class="card-body" *ngFor='let p of questions'>
-            <h5>{{p.Text}}</h5>
-            <p>Dap an dung: {{p.AnswerId}}</p>
-            <p></p>
+    <form>
+        <div class="card">
+            <div class="card-header">{{subject?.Name}}</div>
+            <div class="card-body"
+                *ngFor='let p of questions | paginate: { itemsPerPage: itemOnPage, currentPage: page }'>
+                <h5>{{p.Text}}</h5>
+                <p>Đáp án đúng: {{p.AnswerId}}</p>
+
+                <div class="form-check">
+                    <label class="form-check-label" for="radio1">
+                        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1"
+                            checked>{{p.Answers[0]?.Text}}
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label" for="radio2">
+                        <input type="radio" class="form-check-input" id="radio2" name="optradio"
+                            value="option2">{{p.Answers[1]?.Text}}
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" id="radio3" name="optradio"
+                            value="option2">{{p.Answers[2]?.Text}}
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" id="radio4" name="optradio"
+                            value="option2">{{p.Answers[3]?.Text}}
+                    </label>
+                </div>  
+                <button (click)="prePage()"><i class="far fa-hand-point-left"></i></button>                               
+                <button (click)="nextPage()"><i class="far fa-hand-point-right"></i></button>
+            </div>
+            <div class="card-footer"><button type="submit" class="btn btn-primary">Nộp bài</button></div>
         </div>
-        <div class="card-footer">Mark 0/100</div>
-    </div>
+    </form>
 </div>

@@ -16,7 +16,7 @@
                 <a [routerLink]="['/fixpassword']">Đổi mật khẩu</a>    
             </li>
             <li class="nav-item ">
-                    <a [routerLink]="['/index']">Đăng xuất</a>    
+                    <a [routerLink]="['/index']" (click)="logOut()">Đăng xuất</a>    
             </li>
         </ul>
     </div>
@@ -32,15 +32,15 @@
                 <form style="margin-top: 50px;">
                         <div class="form-left">
                                 <span><i class="fas fa-lock"></i></span>
-                                <input type="password" name="password" placeholder="Password mới" >
+                                <input [(ngModel)]="studentFix.password" [ngModelOptions]="{standalone: true}" type="password" name="password" placeholder="Password mới" >
                         </div>
                         <div class="form-left">
                                 <span><i class="fas fa-lock"></i></span>
-                                <input type="passwordcu" name="passwordcu" placeholder="Password cũ" >
+                                <input [(ngModel)]="studentFix.password" [ngModelOptions]="{standalone: true}" type="password" name="passwordcu" placeholder="Password cũ" >
                         </div>
                     <div class="form-left">
                             <span><i class="far fa-envelope"></i></span>
-                            <input type="email" name="email" placeholder="Email xác nhận" >
+                            <input [(ngModel)]="studentFix.email" [ngModelOptions]="{standalone: true}" type="email" name="email" placeholder="Email xác nhận" >
                     </div>
                     <div class="row" >
                             <div class="col-6"><button type="submit">Thay đổi</button></div>

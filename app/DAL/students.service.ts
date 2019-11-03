@@ -10,6 +10,7 @@ export class StudentsService {
   }
   sosanh;
   students=[];
+  student;
   getHttpStudents() {
     return this.http.get<Student[]>(`../../assets/Students.js`);
   }
@@ -40,5 +41,16 @@ export class StudentsService {
   // }
   getAllStudent() {
     return this.students
+  }
+  fixInfo(item){
+    for(let i=0;i<this.students.length;i++){
+      if(this.students[i].id===item.id){
+        this.students[i].password=item.password
+        this.students[i].fullname=item.fullname
+        this.students[i].gender=item.gender
+        this.students[i].birthday=item.birthday
+      }
+    }
+    alert('Thay đổi thông tin thành công.')
   }
 }

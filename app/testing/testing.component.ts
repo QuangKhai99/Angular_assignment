@@ -11,6 +11,7 @@ export class TestingComponent implements OnInit {
   list;
   id;
   questions;
+  answers=[];
   subject;
   constructor(private route: ActivatedRoute, private subjectsService: SubjectsService,private http:HttpClient) { }
 
@@ -19,8 +20,33 @@ export class TestingComponent implements OnInit {
       this.list = data
       this.route.paramMap.subscribe(para=>this.id=para.get('Id'))
       this.subject=this.list.find(p=>p.Id=this.id)
-      this.http.get(`../assets/Quizs/${this.id}.js`).subscribe(data=>{this.questions=data;})
-    })  
+      this.http.get(`../assets/Quizs/${this.id}.js`).subscribe(data=>{
+        this.questions=data;
+        this.questions=data;
+
+        // for(let i=0;i<this.questions.length;i++){
+        //   this.answers.push(this.questions[i].Answers)
+        // }
+      })
+    })
   }
-  
+  itemOnPage: number = 1;
+  page:number = 1;
+  firstPage(){
+    this.page=1
+  }
+  lastPage(){
+    this.page=this.list.length/this.itemOnPage
+  }
+  nextPage(){
+    if(this.list.length/this.itemOnPage>this.page)
+    this.page++
+  }
+  prePage(){
+    if(this.page>1)
+      this.page--
+  }
+  logOut(){
+    localStorage.removeItem('login');
+  }
 }

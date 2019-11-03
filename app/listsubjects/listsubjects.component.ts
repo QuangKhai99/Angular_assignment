@@ -16,4 +16,7 @@ export class ListsubjectsComponent implements OnInit {
         })
     }
     p = 1;
+    logOut(){
+        localStorage.removeItem('login');
+      }
 }
