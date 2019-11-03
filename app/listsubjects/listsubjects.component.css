@@ -30,17 +30,28 @@ nav button:hover{
     color: #feac00;
 }
 .testing{
-    padding-top: 130px;
+    padding: 0 10%;
+    padding-top: 100px;
     padding-bottom:50px;
     background-color: rgb(248, 240, 226);
     height: auto;
     width: auto;
-    padding-right: 15px;
 }
-.list .card{
+.list .table{
     border-radius: 5px;
     float: left;
     margin: 20px;
+    padding: 0;
+}
+.list .table tbody{
+    text-align: center;
+    background-color: white;
+}
+.table:hover thead{
+    background-color: bisque;
+}
+.table:hover tfoot{
+    background-color: bisque;
 }
 .list button{
     border: none;
@@ -53,6 +64,18 @@ nav button:hover{
 .list button:hover{
     color: chocolate;
     background: none;
+}
+.menu .table {
+    margin: 20px;
+}
+.menu .table thead{
+    text-align: center;
+}
+.menu .table a{
+    font-size: unset;
+    padding: 0;
+    margin: 0;
+    color: black;
 }
 
 

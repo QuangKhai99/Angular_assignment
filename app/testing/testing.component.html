@@ -23,8 +23,12 @@
 </nav>
 <div class="testing">
     <div class="card">
-        <div class="card-header"></div>
-        <div class="card-body"></div>
-        <div class="card-footer"></div>
+        <div class="card-header">{{subject?.Name}}</div>
+        <div class="card-body" *ngFor='let p of questions'>
+            <h5>{{p.Text}}</h5>
+            <p>Dap an dung: {{p.AnswerId}}</p>
+            <p></p>
+        </div>
+        <div class="card-footer">Mark 0/100</div>
     </div>
 </div>

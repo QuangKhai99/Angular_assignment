@@ -1,7 +1,7 @@
 .background{
     background-image: url("../../assets/images/11.jpg");
     background-repeat: no-repeat;
-    width: 100%;
+    width: auto;
     height: 1000px;
     background-size: cover;
     text-align: center;
@@ -39,7 +39,7 @@ a:hover{
     color: #feac00;
 }
 .index{
-    padding-top:15%;
+    padding-top:250px;
 }
 .navbar-brand{
     font-size: xx-large;

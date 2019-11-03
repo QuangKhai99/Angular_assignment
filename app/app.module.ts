@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
@@ -32,6 +33,7 @@ import { ListsubjectsComponent } from './listsubjects/listsubjects.component';
     BrowserModule,
     NgxPaginationModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '' , component:IndexComponent},
       { path: 'index' , component:IndexComponent},
@@ -42,7 +44,7 @@ import { ListsubjectsComponent } from './listsubjects/listsubjects.component';
       { path: 'fixinfo' , component:FixpasswordComponent},
       { path: 'fixpassword', component:FixPassWordComponent},
       { path: 'listsubject', component:ListsubjectsComponent},
-      { path: 'testing', component:TestingComponent}
+      { path: 'testing/:Id', component:TestingComponent}
     ])
   ],
   providers: [],

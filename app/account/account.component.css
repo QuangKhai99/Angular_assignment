@@ -30,6 +30,8 @@ nav input,button{
     width: 100%;  
     border-radius: 5px;
     border: none;
+    padding: 0 15px;
+    outline: none;
 }
 nav button{
     padding: 0 5%;
@@ -101,6 +103,19 @@ nav button:hover{
 }
 .account a:hover{
     color: #feac00;
+}
+.modal-header {
+    color: #feac00;
+}
+.modal-header button{
+    background: none;
+    border: none;
+}
+.modal-body input{
+    margin: 10px 0px;
+    padding: 5px 10px;
+    border: #feac00 1px solid;
+    outline: none;
 }
 
 

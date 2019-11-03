@@ -1,39 +1,65 @@
-<nav class="navbar navbar-expand-sm" >
-    <!-- Brand/logo -->      
+<nav class="navbar navbar-expand-sm">
+    <!-- Brand/logo -->
     <a class="navbar-brand" [routerLink]="['/index']">FUTURE</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span><i class="fas fa-bars" style="color:feac00;"></i></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item ">
-            <a [routerLink]="['/listsubject']">Làm bài thi</a>
-        </li>
-        <li class="nav-item ">
-            <a [routerLink]="['/fixinfo']">Sửa thông tin</a>
-        </li>
-        <li class="nav-item ">
-            <a [routerLink]="['/fixpassword']">Đổi mật khẩu</a>    
-        </li>
-        <li class="nav-item ">
-                <a [routerLink]="['/index']">Đăng xuất</a>    
-        </li>
-    </ul>
-</div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+                <a [routerLink]="['/listsubject']">Làm bài thi</a>
+            </li>
+            <li class="nav-item ">
+                <a [routerLink]="['/fixinfo']">Sửa thông tin</a>
+            </li>
+            <li class="nav-item ">
+                <a [routerLink]="['/fixpassword']">Đổi mật khẩu</a>
+            </li>
+            <li class="nav-item ">
+                <a [routerLink]="['/index']">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
 </nav>
-    <div class="testing">
-            <div class="list row">
-                <div class="card col-lg-3 col-md-5 col-sm-10" *ngFor="let p of list | paginate: { itemsPerPage: 6, currentPage: p }">
-                    <div class="card-header">{{p.Name}}</div>
-                    <div class="card-body"><img src="{{p.Logo}}" style="width: 60%;height: 60%;"></div>
-                    <div class="card-footer">
+<div class="testing row">
+    <div class="list row col-lg-10 col-md-10 col-sm-12">
+        <table class="table col-lg-5 col-md-5 col-sm-12"
+            *ngFor="let p of list | paginate: { itemsPerPage: 4, currentPage: p }">
+            <thead class="card-header">
+                <tr>
+                    <th>{{p.Name}}</th>
+                </tr>
+            </thead>
+            <tbody class="card-body">
+                <tr>
+                    <td><img src="{{p.Logo}}" style="padding:0 2%;"></td>
+                </tr>
+            </tbody>
+            <tfoot class="card-footer">
+                <tr>
+                    <td>
                         <p>Thời gian làm bài: 60p</p>
                         <p>Số lượng câu hỏi: 50</p>
                         <p>Điểm thi lần trước: </p>
-                        <button [routerLink]="['/testing']">Bắt đầu thi</button>
-                    </div>
-                </div>
-                <pagination-controls (pageChange)="p = $event" style="padding-left:10%;text-align: center;"></pagination-controls>
-            </div>
+                        <button [routerLink]="['/testing',p.Id]">Bắt đầu thi</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
-    
+    <div class="menu col-lg-2 col-md-2 col-sm-12">
+        <table class="table table-hover table-borderless">
+            <thead>
+                <tr >
+                    <th>Danh Mục Môn Học</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of list">
+                    <td><a [routerLink]="['/testing',p.Id]">{{p.Name}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
