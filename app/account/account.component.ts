@@ -42,8 +42,10 @@ export class AccountComponent implements OnInit {
   constructor(private studentService: StudentsService, private route: Router) { }
 
   ngOnInit() {
+    this.allStudents=this.studentService.getAllStudent()
     this.studentService.getHttpStudents().subscribe((res: Student[]) => {
       this.firstStudents = res;
+      if(this.allStudents.length===0)
       for (let i = 0; i < this.firstStudents.length; i++) {
         this.studentService.addAllStudents(this.firstStudents[i])
       }

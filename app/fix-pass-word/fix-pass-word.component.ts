@@ -15,26 +15,35 @@ export class FixPassWordComponent implements OnInit {
     username: null,
     password: null,
     fullname: null,
-    email:null,
+    email: null,
     gender: null,
     schoolfee: null,
     marks: null,
     birthday: new Date().toISOString().substring(0, 10),
     mark: null
   }
+  infoFix = {
+    oldPassword: null,
+    newPassword: null,
+    email: null,
+  }
   ngOnInit() {
-    this.allStudents=this.studentService.getAllStudent()
+    this.allStudents = this.studentService.getAllStudent()
     this.getLocalStorage()
-    this.studentFix=this.allStudents.find(p=>p.id=this.user[0].id)
+    this.studentFix = this.allStudents.find(p => p.id = this.user[0].id)
   }
-  getLocalStorage(){
-    this.user= JSON.parse(localStorage.getItem('login'))[0];
+  getLocalStorage() {
+    this.user = JSON.parse(localStorage.getItem('login'))[0];
   }
-  logOut(){
+  logOut() {
     localStorage.removeItem('login');
   }
-  
-  fixUser(item){
-    this.studentService.fixInfo(item)
+  fixPassword() {
+    if (this.infoFix.oldPassword != this.studentFix.password || this.infoFix.email != this.studentFix.email)
+      alert('Thông tin không đúng')
+    else {
+      this.studentFix.password=this.infoFix.newPassword
+      this.studentService.fixInfo(this.studentFix)
+    }
   }
 }

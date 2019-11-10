@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./testing.component.css']
 })
 export class TestingComponent implements OnInit {
-  list;
+  list:any;
   id;
   questions;
   answers=[];
@@ -19,14 +19,15 @@ export class TestingComponent implements OnInit {
     this.subjectsService.getHttpSubjects().subscribe(data => {
       this.list = data
       this.route.paramMap.subscribe(para=>this.id=para.get('Id'))
-      this.subject=this.list.find(p=>p.Id=this.id)
+      this.list.find(p=>{
+        if(p.Id===this.id)
+          this.subject=p
+      })
       this.http.get(`../assets/Quizs/${this.id}.js`).subscribe(data=>{
         this.questions=data;
-        this.questions=data;
-
-        // for(let i=0;i<this.questions.length;i++){
-        //   this.answers.push(this.questions[i].Answers)
-        // }
+        for(let i=0;i<this.questions.length;i++){
+          this.answers.push(this.questions[i].Answers)
+        }
       })
     })
   }
