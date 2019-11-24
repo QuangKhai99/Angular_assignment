@@ -1,11 +1,11 @@
-export class Student {
-    id:number;
-    username:string;
-    password:string;
-    fullname:string;
-    email:string;
-    gender:boolean;
-    birthday:Date;
-    schoolfee:number;
-    marks:number;
+export interface Student{
+    id? : number;
+    birthday? :Date;
+    email? : string;
+    fullname? : string;
+    gender?: boolean;
+    marks?: number;
+    password?: string;
+    schoolfee?: number;
+    username?: string
 }

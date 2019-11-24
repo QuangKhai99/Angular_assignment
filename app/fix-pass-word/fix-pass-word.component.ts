@@ -8,19 +8,15 @@ import { StudentsService } from '../DAL/students.service';
 export class FixPassWordComponent implements OnInit {
 
   constructor(private studentService: StudentsService) { }
-  user;
-  allStudents;
   studentFix = {
-    id: null,
-    username: null,
-    password: null,
-    fullname: null,
-    email: null,
-    gender: null,
-    schoolfee: null,
-    marks: null,
     birthday: new Date().toISOString().substring(0, 10),
-    mark: null
+    email: null,
+    fullname: null,
+    gender: true,
+    marks: null,
+    password: null,
+    schoolfee: null,
+    username: null,
   }
   infoFix = {
     oldPassword: null,
@@ -28,22 +24,17 @@ export class FixPassWordComponent implements OnInit {
     email: null,
   }
   ngOnInit() {
-    this.allStudents = this.studentService.getAllStudent()
-    this.getLocalStorage()
-    this.studentFix = this.allStudents.find(p => p.id = this.user[0].id)
-  }
-  getLocalStorage() {
-    this.user = JSON.parse(localStorage.getItem('login'))[0];
+    this.studentFix = JSON.parse(localStorage.getItem('login'));
   }
   logOut() {
     localStorage.removeItem('login');
   }
-  fixPassword() {
-    if (this.infoFix.oldPassword != this.studentFix.password || this.infoFix.email != this.studentFix.email)
+  fixPassword(item) {
+    if (this.infoFix.oldPassword != this.studentFix[0].password || this.infoFix.email != this.studentFix[0].email)
       alert('Thông tin không đúng')
     else {
-      this.studentFix.password=this.infoFix.newPassword
-      this.studentService.fixInfo(this.studentFix)
+      this.studentFix[0].password=this.infoFix.newPassword
+      this.studentService.updateStudent(item.key,this.studentFix[0])
     }
   }
 }

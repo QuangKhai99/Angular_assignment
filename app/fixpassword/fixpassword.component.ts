@@ -10,32 +10,26 @@ import { StudentsService } from '../DAL/students.service';
 export class FixpasswordComponent implements OnInit {
 
   constructor(private studentService: StudentsService) { }
-  user;
-  allStudents;
   studentFix = {
-    id: null,
-    username: null,
-    password: null,
-    fullname: null,
-    email:null,
-    gender: null,
-    schoolfee: null,
-    marks: null,
     birthday: new Date().toISOString().substring(0, 10),
-    mark: null
+    email: null,
+    fullname: null,
+    gender: true,
+    marks: null,
+    password: null,
+    schoolfee: null,
+    username: null,
   }
   ngOnInit() {
-    this.allStudents=this.studentService.getAllStudent()
-    this.getLocalStorage()
-    this.studentFix=this.allStudents.find(p=>p.id=this.user[0].id)
+      console.log(this.studentFix);
+      this.studentFix = JSON.parse(localStorage.getItem('login'))
   }
-  getLocalStorage(){
-    this.user= JSON.parse(localStorage.getItem('login'))[0];
-  }
-  logOut(){
+  logOut() {
     localStorage.removeItem('login');
   }
   fixUser(item){
-    this.studentService.fixInfo(item)
+    localStorage.removeItem('login');
+    localStorage.setItem('login', JSON.stringify(this.studentFix[0]));
+    this.studentService.updateStudent(item.key,this.studentFix[0])
   }
 }

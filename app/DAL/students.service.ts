@@ -1,56 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Student } from '../students';
+import { AngularFireDatabase, AngularFireList  } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentsService {
-  constructor(private http: HttpClient) {
+  allStudentsRef: AngularFireList<any>;
+  allStudents;
+
+  constructor(private db: AngularFireDatabase) {
+    this.allStudentsRef = db.list('Students');
+    this.allStudentsRef.valueChanges().subscribe(data => {
+      this.allStudents= data;    
+    });
   }
-  sosanh;
-  students=[];
-  student;
-  getHttpStudents() {
-    return this.http.get<Student[]>(`../../assets/Students.js`);
+  addStudent(item) {
+    this.allStudentsRef.push(item);
   }
-  addAllStudents(item) {
-    // console.log(this.students);
-    // if (this.students != []) {
-    //   this.sosanh = this.students.filter(p => {
-    //     if (item.id === p.id) {
-    //       return p;
-    //     }
-    //   })
-    // }   
-    
-    // if (this.students == []) {
-    //   this.students.push(item);
-    // } else if (this.sosanh) {
-    //   return;
-    // } else {
-    //   this.students.push(item);
-    // }
-    
-      this.students.push(item);
-  }
-  // addF(item){
-  //   if(this.students!=[]){
-  //     this.students.push(item)
-  //   }
-  // }
-  getAllStudent() {
-    return this.students
-  }
-  fixInfo(item){
-    for(let i=0;i<this.students.length;i++){
-      if(this.students[i].id===item.id){
-        this.students[i].password=item.password
-        this.students[i].fullname=item.fullname
-        this.students[i].gender=item.gender
-        this.students[i].birthday=item.birthday
-      }
-    }
-    alert('Thay đổi thông tin thành công.')
+  updateStudent(key,item){
+    this.allStudentsRef.update(key,{'password':item.password,'gender':item.gender,'fullname':item.fullname,'birthday':item.birthday});
+    alert('Thay đổi thành công')
   }
 }

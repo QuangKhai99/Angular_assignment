@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Student } from '../students';
 import { StudentsService } from '../DAL/students.service';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-account',
@@ -9,30 +10,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-
+  allStudents;
 
   user = {
     username: null,
     matkhau: null
   };
-
   userLogin;
 
   newStudent = {
-    id: 0,
-    username: '',
-    password: '',
-    fullname: '',
-    email: '',
-    gender: '',
-    schoolfee: 0,
-    marks: 0,
     birthday: new Date().toISOString().substring(0, 10),
-    mark: 0
+    email: null,
+    fullname: null,
+    gender: null,
+    marks: null,
+    password: null,
+    schoolfee: null,
+    username: null, 
   }
-  firstStudents;
-  allStudents;
-
+  keys;
   fpw = {
     username: null,
     matkhau: null,
@@ -42,22 +38,19 @@ export class AccountComponent implements OnInit {
   constructor(private studentService: StudentsService, private route: Router) { }
 
   ngOnInit() {
-    this.allStudents=this.studentService.getAllStudent()
-    this.studentService.getHttpStudents().subscribe((res: Student[]) => {
-      this.firstStudents = res;
-      if(this.allStudents.length===0)
-      for (let i = 0; i < this.firstStudents.length; i++) {
-        this.studentService.addAllStudents(this.firstStudents[i])
-      }
-    })
+    this.studentService.allStudentsRef.snapshotChanges().pipe(map(changes => 
+      changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+    )
+  ).subscribe(a=>{
+    this.allStudents=a
+    this.keys=a.map(item=>item.key)
+  })
     this.getlocalstorage();
-    this.allStudents=this.studentService.getAllStudent()
   }
-
   getlocalstorage() {
     let local = JSON.parse(localStorage.getItem('login'));
     if (local == null) {
-      this.userLogin = [];
+      this.userLogin;
     } else {
       this.userLogin = local;
     }
@@ -76,15 +69,14 @@ export class AccountComponent implements OnInit {
       alert("Mật khẩu không đúng.");
 
     } else {
-      this.userLogin.push(accountExist);
+      this.userLogin=accountExist;
       localStorage.setItem('login', JSON.stringify(this.userLogin));
       this.route.navigateByUrl('/listsubject');
       alert("Đăng nhập thành công.");
     }
   }
   registration(newStudent) {
-    console.log('allStudents',this.allStudents);
-    
+  
     const accountExist = this.allStudents.filter(p => {
       if (p.username == newStudent.username)
         return p;
@@ -100,29 +92,26 @@ export class AccountComponent implements OnInit {
       alert("Email đã tồn tại.");
     }
     else {
-      if (newStudent.username == '' || newStudent.password == '') {
+      if (newStudent.username == null || newStudent.password == null) {
         alert("Vui lòng điền username và password");
-       } else {
-        newStudent.id = this.allStudents.length + 1;
-        this.studentService.addAllStudents(newStudent)
+      } else {
+        this.studentService.addStudent(newStudent)
         alert("Đăng ký thành công.");
         // reset form Registration
-        this.newStudent = {
-          id: 0,
-          username: '',
-          password: '',
-          fullname: '',
-          email: '',
-          gender: '',
-          schoolfee: 0,
-          marks: 0,
+        newStudent = {
           birthday: new Date().toISOString().substring(0, 10),
-          mark: 0
+          email: null,
+          fullname: null,
+          gender: true,
+          marks: null,
+          password: null,
+          schoolfee: null,
+          username: null, 
         }
       }
     }
   }
-  resetFPW() {
+  resetFindPW() {
     this.fpw = {
       username: null,
       matkhau: null,

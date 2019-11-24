@@ -11,9 +11,7 @@ export class ListsubjectsComponent implements OnInit {
     constructor(private subjectsService:SubjectsService) { }
 
     ngOnInit() {
-        this.subjectsService.getHttpSubjects().subscribe(data=>{
-            this.list=data
-        })
+        this.subjectsService.allSubjects.subscribe(item=>this.list=item)
     }
     p = 1;
     logOut(){
