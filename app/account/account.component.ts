@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Student } from '../students';
 import { StudentsService } from '../DAL/students.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';

@@ -24,49 +24,27 @@
 <div class="testing">
     <form>
         <div class="card">
-            <div class="card-header">{{subject?.Name}}</div>
+            <div class="card-header">{{subject?.Name}}
+                <div>
+                    <label>Thời gian làm bài: </label>
+                    <span class="ml-2 badge badge-pill badge-primary" id="timeCountDown"></span>
+                </div>
+            </div>
             <div class="card-body"
                 *ngFor='let p of questions | paginate: { itemsPerPage: itemOnPage, currentPage: page }'>
                 <h5>{{p.Text}}</h5>
                 <p>Đáp án đúng: {{p.AnswerId}}</p>
-
-                <!-- <div class="abc" *ngFor="let t of Answers">
-                    <div class="form-check">
-                        <label class="form-check-label" for="radio1">
-                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1"
-                                checked>{{p.Answers[0]?.Text}}
-                        </label>
-                    </div>
-                </div> -->
-
-                <div class="form-check">
+                <div class="form-check" *ngFor="let t of p.Answers">
+                    <input type="radio" class="form-check-input" name="p.id" value="t.id"
+                        [(ngModel)]="answerId" [ngModelOptions]="{standalone: true}">
                     <label class="form-check-label" for="radio1">
-                        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1"
-                            checked>{{p.Answers[0]?.Text}}
+                        {{t.Text}}
                     </label>
                 </div>
-                <div class="form-check">
-                    <label class="form-check-label" for="radio2">
-                        <input type="radio" class="form-check-input" id="radio2" name="optradio"
-                            value="option2">{{p.Answers[1]?.Text}}
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" id="radio3" name="optradio"
-                            value="option2">{{p.Answers[2]?.Text}}
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" id="radio4" name="optradio"
-                            value="option2">{{p.Answers[3]?.Text}}
-                    </label>
-                </div>  
-                <button (click)="prePage()"><i class="far fa-hand-point-left"></i></button>                               
+                <button (click)="prePage()"><i class="far fa-hand-point-left"></i></button>
                 <button (click)="nextPage()"><i class="far fa-hand-point-right"></i></button>
             </div>
-            <div class="card-footer"><button type="submit" class="btn btn-primary">Nộp bài</button></div>
+            <div class="card-footer"><button type="submit" class="btn btn-primary" (click)="nopBai()">Nộp bài</button></div>
         </div>
     </form>
 </div>

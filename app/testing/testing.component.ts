@@ -1,79 +1,105 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SubjectsService } from '../DAL/subjects.service';
-import { AngularFireDatabase, AngularFireList  } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { StudentsService } from '../DAL/students.service';
 @Component({
   selector: 'app-testing',
   templateUrl: './testing.component.html',
   styleUrls: ['./testing.component.css']
 })
 export class TestingComponent implements OnInit {
+  user;
   allQuizzesRef: AngularFireList<any>;
-  allQuizzes:Observable<any[]>;
+  allQuizzes: Observable<any[]>;
   list: any;
   id;//id subject
-  questions;
-  answers = [];
   subject;// id sau khi so sanh voi id subject
-
-  constructor(private route: ActivatedRoute, private subjectsService: SubjectsService,private db:AngularFireDatabase) { }
+  questions;//tat ca cau hoi
+  answers = [];// cau tra loi cua nguoi dung
+  mark:number;
+  answerId:number;
+  constructor(private route: ActivatedRoute, private subjectsService: SubjectsService,private studentService: StudentsService, private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    // this.subjectsService.getHttpSubjects().subscribe(data => {
-    //   this.list = data
-    //   this.route.paramMap.subscribe(para=>this.id=para.get('Id'))
-    //   this.list.find(p=>{
-    //     if(p.Id===this.id)
-    //       this.subject=p
-    //   })
-    //   this.http.get(`../assets/Quizs/${this.id}.js`).subscribe(data=>{
-    //     this.questions=data;
-    //     for(let i=0;i<this.questions.length;i++){
-    //       this.answers.push(this.questions[i].Answers)
-    //     }
-    //   })
-    // })
+    this.user = JSON.parse(localStorage.getItem('login'))
+
     this.route.paramMap.subscribe(para => {
       this.id = para.get('Id')
     })
-    this.subjectsService.allSubjects.subscribe(item =>{
+    this.subjectsService.allSubjects.subscribe(item => {
       this.list = item
       this.list.filter(element => {
-        if(element.Id===this.id)
-        this.subject=element
+        if (element.Id === this.id)
+          this.subject = element
       });
     })
 
-    this.allQuizzesRef=this.db.list(`Quizzes`)
+    this.allQuizzesRef = this.db.list(`Quizzes`)
     this.allQuizzes = this.allQuizzesRef.snapshotChanges().pipe(
-      map(changes => 
+      map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       )
     );
-    this.allQuizzes.subscribe(a=>{this.questions=a
-      console.log(this.questions);})
-    
+    this.allQuizzes.subscribe(a => {
+    this.questions = a
+      console.log(this.questions);
+    })
+    this.timeCountDown(5,1) 
   }
+
   itemOnPage: number = 1;
   page: number = 1;
 
-  // firstPage() {
-  //   this.page = 1
-  // }
-  // lastPage() {
-  //   this.page = this.list.length / this.itemOnPage
-  // }
   nextPage() {
     if (this.list.length / this.itemOnPage > this.page)
       this.page++
+    this.answers.push(this.answerId)
   }
   prePage() {
     if (this.page > 1)
       this.page--
+    this.answers.splice(this.answers[this.answers.length-1],1)
   }
+
   logOut() {
     localStorage.removeItem('login');
+  }
+  timeCountDown(min:number,sec:number) {
+    document.getElementById("timeCountDown").innerHTML = min + " : " + sec;
+    clearInterval(set);
+    var set = setInterval(function () {  
+      if( min > 0 ){
+        sec -= 1;
+        if(sec < 0){
+          min -= 1;
+          sec = 59;
+          document.getElementById("timeCountDown").innerHTML = min + " : " + sec;
+        }
+        document.getElementById("timeCountDown").innerHTML = min + " : " + sec;
+      }
+      if( min == 0 ){
+        if(sec > 0){
+          sec-=1
+        }
+        if(sec == 0)
+          {
+            this.nopBai()
+          }
+          document.getElementById("timeCountDown").innerHTML = min + " : " + sec;
+      }
+      document.getElementById("timeCountDown").innerHTML = min + " : " + sec;
+    }, 1000);
+  }
+
+  nopBai(){
+    for(let i=0;i<this.questions.length;i++){ 
+        if(this.questions[i].AnswerId===this.answers[i])
+          this.mark+=this.questions[i].Marks
+    }
+    alert('Điểm tổng kết của bạn là: ' + this.mark)
+    this.studentService.updateMark(this.user.key,this.mark)
   }
 }

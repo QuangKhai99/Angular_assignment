@@ -21,4 +21,7 @@ export class StudentsService {
     this.allStudentsRef.update(key,{'password':item.password,'gender':item.gender,'fullname':item.fullname,'birthday':item.birthday});
     alert('Thay đổi thành công')
   }
+  updateMark(key,item){
+    this.allStudentsRef.update(key,{'marks':item})
+  }
 }
