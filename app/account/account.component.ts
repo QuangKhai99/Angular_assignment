@@ -27,7 +27,6 @@ export class AccountComponent implements OnInit {
     schoolfee: null,
     username: null, 
   }
-  keys;
   fpw = {
     username: null,
     matkhau: null,
@@ -42,7 +41,6 @@ export class AccountComponent implements OnInit {
     )
   ).subscribe(a=>{
     this.allStudents=a
-    this.keys=a.map(item=>item.key)
   })
     this.getlocalstorage();
   }
