@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { SubjectsService } from '../DAL/subjects.service';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { StudentsService } from '../DAL/students.service';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-testing',
@@ -12,7 +12,16 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./testing.component.css']
 })
 export class TestingComponent implements OnInit {
-  user;
+  user = {
+    birthday: new Date().toISOString().substring(0, 10),
+    email: null,
+    fullname: null,
+    gender: true,
+    marks: null,
+    password: null,
+    schoolfee: null,
+    username: null,
+  }
   allQuizzesRef: AngularFireList<any>;
   allQuizzes: Observable<any[]>;
   list: any;
@@ -20,9 +29,9 @@ export class TestingComponent implements OnInit {
   subject;// id sau khi so sanh voi id subject
   questions;//tat ca cau hoi
   answers = [];// cau tra loi cua nguoi dung
-  mark: number;
+  mark=0;
   answerId: number = -1;
-  constructor(private route: ActivatedRoute, private subjectsService: SubjectsService, private studentService: StudentsService, private db: AngularFireDatabase, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private router: Router, private subjectsService: SubjectsService, private studentService: StudentsService, private db: AngularFireDatabase, private http: HttpClient) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('login'))
@@ -61,9 +70,12 @@ export class TestingComponent implements OnInit {
     if (this.answerId == -1)
       alert("Bạn chưa chọn câu trả lời")
     else {
+      if(this.page==this.questions.length)
+        this.nopBai(this.user[0])
       if (this.questions.length / this.itemOnPage > this.page)
         this.page++
       this.answers.push(this.answerId)
+      this.answerId = -1
     }
   }
   prePage() {
@@ -89,11 +101,11 @@ export class TestingComponent implements OnInit {
         document.getElementById("timeCountDown").innerHTML = min + " : " + sec;
       }
       if (min == 0) {
-        if (sec > 0) {
+        if (sec >= 0) {
           sec -= 1
         }
-        if (sec == 0) {
-          this.nopBai()
+        if (sec = -1) {
+          this.nopBai(this.user[0])
         }
         document.getElementById("timeCountDown").innerHTML = min + " : " + sec;
       }
@@ -101,19 +113,16 @@ export class TestingComponent implements OnInit {
     }, 1000);
   }
 
-  nopBai() {
-    if (this.questions.length != this.answers.length)
-      alert("Bạn chưa làm xong bài")
-    else {
-      for (let i = 0; i < this.questions.length; i++) {
-        if (this.questions[i].AnswerId == this.answers[i]) {
-          console.log(this.questions[i].AnswerId);
-          console.log(this.answers[i]);
-          this.mark = this.mark + this.questions[i].Marks
-        }
+  nopBai(item) {
+    for (let i = 0; i < this.questions.length; i++) {
+      if(this.answers[i]==null)
+        this.answers[i]=0  
+      if (this.questions[i].AnswerId==this.answers[i]) {
+        this.mark = this.mark + this.questions[i].Marks
       }
-      alert('Điểm tổng kết của bạn là: ' + this.mark)
-      this.studentService.updateMark(this.user.key, this.mark)
     }
+    alert('Điểm tổng kết của bạn là: ' + this.mark)
+    this.router.navigateByUrl('/listsubject');
+    this.studentService.updateMark(item.key, this.mark)
   }
 }
